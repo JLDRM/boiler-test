@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 
 import Home from "../../views/home/Home.view";
@@ -27,12 +28,16 @@ function AppRouter() {
           <Home />
         </Route>
 
-        <Route path="/redux">
+        <Route exact path="/redux">
           <ReduxInfo />
         </Route>
 
         <Route path="/artist-detail">
           <ArtistDetailRouting />
+        </Route>
+        
+        <Route path="*">
+          <Redirect to="/" />
         </Route>
 
       </Switch>

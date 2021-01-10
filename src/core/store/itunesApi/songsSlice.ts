@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { ItunesResults } from '../../models/itunesApi.models';
+import { ItunesResults, ItuneSearchResponse } from '../../models/itunesApi.models';
 
 interface ItunesSongsState {
   isLoadingSongs: boolean;
@@ -23,9 +23,9 @@ export const songsSlice = createSlice({
     requested: state => {
       state.isLoadingSongs = true;
     },
-    succeed: (state, action: PayloadAction<ItunesResults[]>) => {
+    succeed: (state, action: PayloadAction<ItuneSearchResponse>) => {
       state.isLoadingSongs = false;
-      state.searchResults = action.payload;
+      state.searchResults = action.payload.results;
     },
     failed: (state, action: PayloadAction<Error>) => {
       state.isLoadingSongs = false;
